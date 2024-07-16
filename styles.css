@@ -3,9 +3,75 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f8ff;
+    background: url('tic.jpg') no-repeat center center fixed; /* استخدم صورة متحركة */
+    background-size: cover;
     font-family: 'Comic Sans MS', cursive, sans-serif;
     margin: 0;
+}
+
+.start-screen {
+    text-align: center;
+    background-color: #ffebcd;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(243, 50, 50, 0.3); /* هنا تم إضافة ظل */
+    transition: box-shadow 0.4s ease, transform 0.3s ease; /* هنا تم إضافة خاصية الانتقال */
+}
+
+.start-screen:hover{
+    box-shadow: 0 8px 16px rgba(214, 5, 5, 0.3);
+}
+
+.start-screen.error {
+    color: red;
+    margin-top: 10px;
+}
+
+.start-screen h1 {
+    color: #ff4500;
+    margin-bottom: 20px;
+}
+
+.game-mode button {
+    padding: 20px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #4682b4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    transition: background-color 0.3s;
+}
+
+.game-mode button:hover {
+    background-color: #5f9ea0;
+}
+
+.player-inputs input {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 1em;
+    border: 2px solid #4682b4;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 300px;
+}
+
+#start-game {
+    padding: 20px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #4682b4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+#start-game:hover {
+    background-color: #5f9ea0;
 }
 
 .container {
@@ -18,30 +84,32 @@ h1 {
 
 .board {
     display: grid;
-    grid-template-columns: repeat(3, 100px);
+    grid-template-columns: repeat(3, 150px); /* زيادة العرض */
     gap: 10px;
     margin: 20px auto;
 }
 
 .cell {
-    width: 100px;
-    height: 100px;
+    width: 140px; /* زيادة العرض */
+    height: 140px; /* زيادة الطول */
     background-color: #ffebcd;
     border: 2px solid #000;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2em;
+    font-size: 2.5em; /* زيادة حجم الخط */
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .cell:hover {
     background-color: #ffd700;
+    box-shadow: 0 8px 16px rgba(196, 14, 14, 0.3);
+    transition: box-shadow 0.4s ease-in-out; /* هنا تم إضافة خاصية الانتقال */
 }
 
 button {
-    padding: 10px 20px;
+    padding: 20px 20px;
     font-size: 1em;
     cursor: pointer;
     background-color: #4682b4;
@@ -49,8 +117,154 @@ button {
     border: none;
     border-radius: 5px;
     transition: background-color 0.3s;
+    margin: auto;
 }
 
 button:hover {
     background-color: #5f9ea0;
+    box-shadow: 0 8px 16px rgba(196, 14, 14, 0.3);
+    transition: box-shadow 0.4s ease-in-out; /* هنا تم إضافة خاصية الانتقال */
+}
+
+#back-to-home {
+    margin-top: 20px;
+    padding: 20px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #ff4500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+#back-to-home:hover {
+    background-color: #ff6347;
+    box-shadow: 0 8px 16px rgba(196, 14, 14, 0.3);
+    transition: box-shadow 0.4s ease-in-out; /* هنا تم إضافة خاصية الانتقال */
+}
+
+.custom-alert {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* خلفية معتمة */
+    justify-content: center;
+    align-items: center; /* المركز العمودي والأفقي */
+    z-index: 1000; /* التأكد من ظهوره فوق كل العناصر */
+}
+
+.alert-content {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    max-width: 80%;
+    font-size: 2em; /* نص أكبر */
+    color: #333;
+    animation: slideDown 0.5s ease; /* تأثير الانزلاق */
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+#close-alert {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #ff4500; /* اللون الافتراضي */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+
+#close-alert.green {
+    background-color: green !important; /* لون للاعب 1 */
+}
+
+#close-alert.red {
+    background-color: red !important; /* لون للاعب 2 أو الكمبيوتر */
+}
+
+#close-alert.blue {
+    background-color: blue !important; /* لون للتعادل */
+}
+
+#close-alert:hover {
+    background-color: #a55264 !important; /* لون مختلف عند التمرير */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* زيادة الظل عند التمرير فوق العنصر */
+    transition: background-color 0.6s ease, transform 0.6s ease , box-shadow 0.6s ease /* هنا تم إضافة خاصية الانتقال */
+}
+
+
+.green {
+    background-color: green !important;
+    color: white;
+}
+
+.red {
+    background-color: red !important;
+    color: white;
+}
+
+.blue {
+    background-color: blue !important;
+    color: white;
+}
+
+.x {
+    color: #ff4500;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.o {
+    color: #4682b4;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+#player-choice {
+    margin-top: 20px;
+}
+
+#player-choice button {
+    margin: 5px;
+}
+@media (max-width: 600px) {
+    button , #start-game , #back-to-home , .game-mode button {
+        padding: 15px; /* حجم ثابت للأزرار */
+        font-size: 1em; /* حجم خط ثابت */
+    }
+    .cell {
+        margin: auto;
+        width: 70px; /* حجم ثابت للخلايا */
+        height: 70px; /* حجم ثابت للخلايا */
+        font-size: 2em; /* حجم خط ثابت */
+    }
+    .board{
+        gap: 3px;
+    }
+    .alert-content {
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        max-width: 80%;
+        font-size: 1.5em; /* نص أكبر */
+    }
+    .start-screen {
+        padding: 30px;
+        border-radius: 15px;
+    }
 }

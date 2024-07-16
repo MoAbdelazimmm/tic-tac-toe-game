@@ -5,9 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
 </head>
 <body>
-    <div class="container">
+    <div id="start-screen" class="start-screen">
+        <i class="fa-solid fa-xmark fa-bounce" style="color: #368c54;font-size: 1.5rem;"></i>
+        <i class="fa-solid fa-o fa-bounce" style="color: #368c54; font-size: 1.5rem;"></i>
+        <h1>Welcome to Tic Tac Toe Game</h1>
+            <div class="game-mode">
+                <h2>Choose your game mode:</h2>
+            <button id="vs-computer">Play vs Computer <i class="fa-solid fa-robot fa-beat-fade" style="color: #63E6BE;"></i></button>
+            <div id="player-choice" style="display: none;">
+                <h2>Choose your symbol:</h2>
+                <button id="choose-x">X</button>
+                <button id="choose-o">O</button>
+            </div>                       
+            <button id="vs-player">Play vs Player <i class="fa-solid fa-user fa-beat-fade" style="color: #63E6BE;"></i></button>
+        </div>
+        <div class="player-inputs" >
+            <input type="text" id="player1" placeholder="Enter Player 1 Name  'X' " style="display: none;" />
+            <input type="text" id="player2" placeholder="Enter Player 2 Name  'O' " style="display: none;" />
+        </div>
+        <button id="start-game" style="display: none;">Start Game</button>
+    </div>
+    
+
+    <div id="game-screen" class="container" style="display: none;">
         <h1>Tic Tac Toe</h1>
         <div id="board" class="board">
             <div class="cell" data-index="0"></div>
@@ -21,7 +45,15 @@
             <div class="cell" data-index="8"></div>
         </div>
         <button id="reset">Reset</button>
+        <button id="back-to-home">Back to Home</button>
+        <div id="custom-alert" class="custom-alert">
+            <div class="alert-content">
+                <span id="alert-message"></span>
+                <button id="close-alert">Play Again</button>
+            </div>
+        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
